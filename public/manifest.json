@@ -1,0 +1,23 @@
+{
+  "name": "Dicoding Story SPA",
+  "short_name": "Story App",
+  "description": "Aplikasi untuk berbagi cerita dengan gambar dan lokasi",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#EBE8DB",
+  "theme_color": "#D76C82",
+  "icons": [
+    {
+      "src": "icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

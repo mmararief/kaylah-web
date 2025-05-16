@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#D76C82" />
+    <meta
+      name="description"
+      content="Dicoding Story - Aplikasi untuk berbagi cerita dengan gambar dan lokasi"
+    />
+    <title>Dicoding Story SPA</title>
+    <!-- The CSS is already bundled by webpack -->
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="icon-192x192.png" />
+  </head>
+  <body>
+    <!-- Skip to Content -->
+    <a href="#main-content" class="skip-link">Lewati ke Konten Utama</a>
+
+    <header>
+      <h1>Dicoding Story</h1>
+      <header>
+        <nav>
+          <a href="#login" id="login-link">Login</a>
+          <a href="#register" id="register-link">Daftar</a>
+          <a href="#home" id="home-link">Home</a>
+          <a href="#add-story" id="add-story-link">Tambah Cerita</a>
+          <a href="#" id="logout-link" style="display: none">Logout</a>
+        </nav>
+      </header>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <!-- Konten halaman akan dirender di sini -->
+    </main>
+
+    <!-- No script tag needed here - HtmlWebpackPlugin will inject it -->
+  </body>
+</html>
