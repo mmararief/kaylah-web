@@ -5,7 +5,17 @@ let map;
 let markers = [];
 
 export const initMap = (containerId = 'map', onMapClick) => {
-  map = L.map(containerId).setView([0, 0], 2);
+  // Check if element exists
+  const mapElement = document.getElementById(containerId);
+  if (!mapElement) return null;
+  
+  // Check if map is already initialized on this element
+  if (mapElement._leafletMap) {
+    map = mapElement._leafletMap;
+    return map;
+  }
+  
+  map = L.map(containerId).setView([-2.548926, 118.0148634], 5); // Default to Indonesia
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
@@ -17,33 +27,52 @@ export const initMap = (containerId = 'map', onMapClick) => {
       onMapClick(lat, lng);
     });
   }
+  
+  // Store reference to map in DOM element
+  mapElement._leafletMap = map;
+  
+  return map;
 };
 
-const customIcon = L.icon({
-  iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-green.png',
-  iconSize: [38, 95],
-  iconAnchor: [22, 94],
-  popupAnchor: [-2, -76],
-  shadowUrl: 'https://leafletjs.com/examples/custom-icons/leaf-shadow.png',
-  shadowSize: [50, 64],
-  shadowAnchor: [4, 62],
+// Create a custom icon using SVG that matches our design
+const customIcon = L.divIcon({
+  html: `
+    <svg width="36" height="48" viewBox="0 0 36 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 0C8.064 0 0 8.064 0 18C0 31.5 18 48 18 48C18 48 36 31.5 36 18C36 8.064 27.936 0 18 0ZM18 24.3C14.508 24.3 11.7 21.492 11.7 18C11.7 14.508 14.508 11.7 18 11.7C21.492 11.7 24.3 14.508 24.3 18C24.3 21.492 21.492 24.3 18 24.3Z" fill="#B03052"/>
+    </svg>
+  `,
+  className: '',
+  iconSize: [36, 48],
+  iconAnchor: [18, 48],
+  popupAnchor: [0, -48]
 });
 
 export const addMarker = (lat, lon, popupText) => {
-  if (!map) return;
+  if (!map) return null;
+  
   const marker = L.marker([lat, lon], {
     icon: customIcon,
-    title: popupText,
-    alt: popupText,
+    title: popupText || 'Selected Location',
+    alt: popupText || 'Selected Location',
   }).addTo(map);
+  
   if (popupText) {
     marker.bindPopup(popupText).openPopup();
   }
+  
   markers.push(marker);
+  
+  // Center map on the new marker with some animation
+  map.setView([lat, lon], map.getZoom() || 13, {
+    animate: true,
+    duration: 0.5
+  });
+  
+  return marker;
 };
 
 export const clearMarkers = () => {
-  markers.forEach(marker => map.removeLayer(marker));
+  markers.forEach(marker => marker.remove());
   markers = [];
 };
 
@@ -52,20 +81,30 @@ export const loadMarkers = (stories) => {
   clearMarkers();
 
   const bounds = L.latLngBounds();
+  let hasValidCoordinates = false;
 
   stories.forEach(story => {
     if (story.lat && story.lon) {
       const popupText = `
-        <strong>${story.name || 'No Title'}</strong><br/>
-        ${story.description || 'No Description'}<br/>
-        <em>Coordinates: ${story.lat.toFixed(5)}, ${story.lon.toFixed(5)}</em>
+        <div class="map-popup">
+          <strong>${story.name || 'No Title'}</strong>
+          <p>${story.description ? story.description.substring(0, 100) + (story.description.length > 100 ? '...' : '') : 'No Description'}</p>
+          <a href="#detail/${story.id}" class="map-popup-link">Lihat Detail</a>
+        </div>
       `;
       addMarker(story.lat, story.lon, popupText);
       bounds.extend([story.lat, story.lon]);
+      hasValidCoordinates = true;
     }
   });
 
-  if (bounds.isValid()) {
+  if (hasValidCoordinates) {
     map.fitBounds(bounds, { padding: [50, 50] });
   }
+};
+
+export const removeMarker = (marker) => {
+  if (!marker) return;
+  marker.remove();
+  markers = markers.filter(m => m !== marker);
 };
