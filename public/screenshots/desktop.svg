@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#EBE8DB"/>
+  <rect x="0" y="0" width="1280" height="80" fill="#D76C82"/>
+  <text x="50" y="50" font-family="Arial" font-size="30" fill="white">Dicoding Story</text>
+  <rect x="40" y="120" width="1200" height="60" fill="#ffffff" rx="10" ry="10"/>
+  <text x="60" y="160" font-family="Arial" font-size="24" fill="#3D0301">Cerita Terbaru</text>
+  
+  <!-- Grid layout untuk cerita -->
+  <g transform="translate(40, 200)">
+    <!-- Cerita 1 -->
+    <rect width="380" height="450" fill="#ffffff" rx="12" ry="12"/>
+    <rect x="20" y="70" width="340" height="200" fill="#f0f0f0" rx="8" ry="8"/>
+    <text x="20" y="40" font-family="Arial" font-size="18" fill="#B03052">User Story 1</text>
+    <text x="320" y="40" font-family="Arial" font-size="14" fill="#777">16/05/2023</text>
+    <text x="20" y="300" font-family="Arial" font-size="16" fill="#333" width="340">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</text>
+    <rect x="20" y="380" width="340" height="1" fill="#f0f0f0"/>
+    <text x="20" y="410" font-family="Arial" font-size="14" fill="#666">📍 Lihat lokasi</text>
+    <path d="M320 400 L330 390 L340 400 L330 410 Z" fill="none" stroke="#B03052" stroke-width="2"/>
+    
+    <!-- Cerita 2 -->
+    <rect x="400" width="380" height="450" fill="#ffffff" rx="12" ry="12"/>
+    <rect x="420" y="70" width="340" height="200" fill="#f0f0f0" rx="8" ry="8"/>
+    <text x="420" y="40" font-family="Arial" font-size="18" fill="#B03052">User Story 2</text>
+    <text x="720" y="40" font-family="Arial" font-size="14" fill="#777">12/05/2023</text>
+    <text x="420" y="300" font-family="Arial" font-size="16" fill="#333" width="340">Sed do eiusmod tempor incididunt ut labore et dolore...</text>
+    <rect x="420" y="380" width="340" height="1" fill="#f0f0f0"/>
+    <text x="420" y="410" font-family="Arial" font-size="14" fill="#666">📍 Lihat lokasi</text>
+    <path d="M720 400 L730 390 L740 400 L730 410 Z" fill="#B03052" stroke="#B03052" stroke-width="2"/>
+    
+    <!-- Cerita 3 -->
+    <rect x="800" width="380" height="450" fill="#ffffff" rx="12" ry="12"/>
+    <rect x="820" y="70" width="340" height="200" fill="#f0f0f0" rx="8" ry="8"/>
+    <text x="820" y="40" font-family="Arial" font-size="18" fill="#B03052">User Story 3</text>
+    <text x="1120" y="40" font-family="Arial" font-size="14" fill="#777">10/05/2023</text>
+    <text x="820" y="300" font-family="Arial" font-size="16" fill="#333" width="340">Ut enim ad minim veniam, quis nostrud exercitation...</text>
+    <rect x="820" y="380" width="340" height="1" fill="#f0f0f0"/>
+    <text x="820" y="410" font-family="Arial" font-size="14" fill="#666">📍 Lihat lokasi</text>
+    <path d="M1120 400 L1130 390 L1140 400 L1130 410 Z" fill="none" stroke="#666" stroke-width="2"/>
+  </g>
+  
+  <!-- Navigation Bar -->
+  <g transform="translate(400, 40)">
+    <text x="0" y="0" font-family="Arial" font-size="16" fill="white">Home</text>
+    <text x="100" y="0" font-family="Arial" font-size="16" fill="white">Tambah Cerita</text>
+    <text x="250" y="0" font-family="Arial" font-size="16" fill="white">Cerita Disukai</text>
+    <text x="400" y="0" font-family="Arial" font-size="16" fill="white">Logout</text>
+  </g>
+</svg> 

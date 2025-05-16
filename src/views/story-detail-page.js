@@ -1,4 +1,5 @@
 import L from 'leaflet';
+import '../components/like-button';
 
 export function renderStoryDetailPage(story) {
   const mainContent = document.getElementById('main-content');
@@ -32,7 +33,11 @@ export function renderStoryDetailPage(story) {
         </div>
         
         <div class="story-detail-info">
-          <p class="story-detail-date">Diunggah pada: ${createdDate}</p>
+          <div class="story-detail-header">
+            <p class="story-detail-date">Diunggah pada: ${createdDate}</p>
+            <div id="detail-like-button"></div>
+          </div>
+          
           <div class="story-detail-description">
             <h3>Deskripsi</h3>
             <p>${story.description}</p>
@@ -48,6 +53,20 @@ export function renderStoryDetailPage(story) {
       </div>
     </div>
   `;
+
+  // Add like button
+  const likeButtonContainer = document.getElementById('detail-like-button');
+  if (likeButtonContainer) {
+    const likeButton = document.createElement('like-button');
+    likeButton.story = story;
+    likeButtonContainer.appendChild(likeButton);
+    
+    // Add event listener for like status change
+    likeButton.addEventListener('likeStatusChanged', (event) => {
+      const { liked } = event.detail;
+      console.log(`Story ${story.id} like status changed to ${liked ? 'liked' : 'unliked'}`);
+    });
+  }
 
   // Initialize map if latitude and longitude are available
   if (story.lat && story.lon && !isNaN(story.lat) && !isNaN(story.lon)) {

@@ -14,9 +14,13 @@ export const handleHomePage = async () => {
     const stories = await fetchStories(token);
     renderHomePage(stories);
 
-    // Initialize map and load markers
-    initMap('map');
-    loadMarkers(stories);
+    // Check if map container exists before initializing
+    const mapContainer = document.getElementById('map');
+    if (mapContainer) {
+      // Initialize map and load markers
+      initMap('map');
+      loadMarkers(stories);
+    }
   } catch (error) {
     console.error('Error fetching stories:', error);
     const mainContent = document.getElementById('main-content');

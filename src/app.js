@@ -4,6 +4,8 @@ import { handleAddStoryPage } from './presenter/add-story-presenter';
 import { handleLoginPage } from './presenter/login-presenter';
 import { handleRegisterPage } from './presenter/register-presenter';
 import { handleStoryDetailPage } from './presenter/story-detail-presenter';
+import { handleLikedStoriesPage } from './presenter/liked-stories-presenter';
+import { handleNotFoundPage } from './presenter/not-found-presenter';
 import { logoutUser } from './util/api';
 import { stopCamera } from './util/camera';
 import { 
@@ -13,6 +15,20 @@ import {
   unsubscribeFromPushNotification,
   checkSubscription
 } from './util/notification';
+
+// Function to check online status and update UI
+function updateOnlineStatus() {
+  const statusElement = document.getElementById('network-status');
+  if (!statusElement) return;
+  
+  if (navigator.onLine) {
+    statusElement.textContent = 'online';
+    statusElement.className = 'status-online';
+  } else {
+    statusElement.textContent = 'offline';
+    statusElement.className = 'status-offline';
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   const mainContent = document.getElementById('main-content');
@@ -29,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutLink = document.getElementById('logout-link');
     const homeLink = document.getElementById('home-link');
     const addStoryLink = document.getElementById('add-story-link');
+    const likedStoriesLink = document.getElementById('liked-stories-link');
 
     if (token) {
       // User is logged in
@@ -37,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (logoutLink) logoutLink.style.display = '';
       if (homeLink) homeLink.style.display = '';
       if (addStoryLink) addStoryLink.style.display = '';
+      if (likedStoriesLink) likedStoriesLink.style.display = '';
     } else {
       // User is not logged in
       if (loginLink) loginLink.style.display = '';
@@ -44,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (logoutLink) logoutLink.style.display = 'none';
       if (homeLink) homeLink.style.display = 'none';
       if (addStoryLink) addStoryLink.style.display = 'none';
+      if (likedStoriesLink) likedStoriesLink.style.display = 'none';
     }
   }
 
@@ -197,8 +216,11 @@ document.addEventListener('DOMContentLoaded', () => {
           case '#register':
             handleRegisterPage();
             break;
+          case '#liked':
+            handleLikedStoriesPage();
+            break;
           default:
-            mainContent.innerHTML = '<h1>Page Not Found</h1>';
+            handleNotFoundPage();
         }
 
         // Update notification settings if user is logged in
@@ -247,8 +269,11 @@ document.addEventListener('DOMContentLoaded', () => {
           case '#register':
             handleRegisterPage();
             break;
+          case '#liked':
+            handleLikedStoriesPage();
+            break;
           default:
-            mainContent.innerHTML = '<h1>Page Not Found</h1>';
+            handleNotFoundPage();
         }
 
         // Update notification settings if user is logged in
@@ -270,4 +295,63 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNavLinks();
     renderPage();
   });
+
+  // Add network status indicator to the UI
+  const createNetworkStatusUI = () => {
+    const header = document.querySelector('header');
+    if (!header) return;
+    
+    const statusContainer = document.createElement('div');
+    statusContainer.className = 'network-status-container';
+    statusContainer.innerHTML = `
+      <span>Status: </span>
+      <span id="network-status">online</span>
+    `;
+    
+    header.appendChild(statusContainer);
+    
+    // Set initial status
+    updateOnlineStatus();
+    
+    // Listen for online/offline events
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+  };
+  
+  createNetworkStatusUI();
+
+  // Check if content is available in cache on page load
+  const preloadCachedContent = async () => {
+    if ('caches' in window) {
+      try {
+        const cache = await caches.open('dicoding-story-static-v1');
+        const keys = await cache.keys();
+        console.log('Cached resources:', keys.length);
+        
+        // Add visual indicator for users
+        const mainContent = document.getElementById('main-content');
+        if (keys.length > 0 && mainContent) {
+          const offlineIndicator = document.createElement('div');
+          offlineIndicator.className = 'offline-indicator';
+          offlineIndicator.textContent = 'Konten tersedia offline';
+          offlineIndicator.style.display = 'none';
+          
+          mainContent.parentNode.insertBefore(offlineIndicator, mainContent);
+          
+          // Only show when offline
+          window.addEventListener('offline', () => {
+            offlineIndicator.style.display = 'block';
+          });
+          
+          window.addEventListener('online', () => {
+            offlineIndicator.style.display = 'none';
+          });
+        }
+      } catch (error) {
+        console.error('Error checking cache:', error);
+      }
+    }
+  };
+  
+  preloadCachedContent();
 });

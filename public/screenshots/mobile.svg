@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
+  <rect width="390" height="844" fill="#EBE8DB"/>
+  <rect x="0" y="0" width="390" height="80" fill="#D76C82"/>
+  <text x="20" y="50" font-family="Arial" font-size="24" fill="white">Dicoding Story</text>
+  
+  <rect x="20" y="100" width="350" height="40" fill="#ffffff" rx="8" ry="8"/>
+  <text x="30" y="125" font-family="Arial" font-size="18" fill="#3D0301">Cerita Terbaru</text>
+  
+  <!-- Grid layout untuk cerita -->
+  <g transform="translate(20, 160)">
+    <!-- Cerita 1 -->
+    <rect width="350" height="320" fill="#ffffff" rx="12" ry="12"/>
+    <rect x="15" y="50" width="320" height="120" fill="#f0f0f0" rx="8" ry="8"/>
+    <text x="15" y="30" font-family="Arial" font-size="16" fill="#B03052">User Story 1</text>
+    <text x="280" y="30" font-family="Arial" font-size="12" fill="#777">16/05/2023</text>
+    <text x="15" y="190" font-family="Arial" font-size="14" fill="#333" width="320">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</text>
+    <rect x="15" y="260" width="320" height="1" fill="#f0f0f0"/>
+    <text x="15" y="280" font-family="Arial" font-size="12" fill="#666">📍 Lihat lokasi</text>
+    <path d="M315 275 L322 268 L329 275 L322 282 Z" fill="none" stroke="#B03052" stroke-width="2"/>
+    
+    <!-- Cerita 2 -->
+    <rect y="340" width="350" height="320" fill="#ffffff" rx="12" ry="12"/>
+    <rect x="15" y="390" width="320" height="120" fill="#f0f0f0" rx="8" ry="8"/>
+    <text x="15" y="370" font-family="Arial" font-size="16" fill="#B03052">User Story 2</text>
+    <text x="280" y="370" font-family="Arial" font-size="12" fill="#777">12/05/2023</text>
+    <text x="15" y="530" font-family="Arial" font-size="14" fill="#333" width="320">Sed do eiusmod tempor incididunt ut labore et dolore...</text>
+    <rect x="15" y="600" width="320" height="1" fill="#f0f0f0"/>
+    <text x="15" y="620" font-family="Arial" font-size="12" fill="#666">📍 Lihat lokasi</text>
+    <path d="M315 615 L322 608 L329 615 L322 622 Z" fill="#B03052" stroke="#B03052" stroke-width="2"/>
+  </g>
+  
+  <!-- Navigation Bar (mobile) -->
+  <g transform="translate(20, 40)">
+    <g transform="translate(260, 0)">
+      <line x1="0" y1="0" x2="20" y2="0" stroke="white" stroke-width="2"/>
+      <line x1="0" y1="7" x2="20" y2="7" stroke="white" stroke-width="2"/>
+      <line x1="0" y1="14" x2="20" y2="14" stroke="white" stroke-width="2"/>
+    </g>
+  </g>
+  
+  <!-- Bottom Navigation -->
+  <rect x="0" y="800" width="390" height="44" fill="white"/>
+  <g transform="translate(40, 825)">
+    <text x="0" y="0" font-family="Arial" font-size="12" fill="#B03052">Home</text>
+    <text x="100" y="0" font-family="Arial" font-size="12" fill="#666">Tambah</text>
+    <text x="200" y="0" font-family="Arial" font-size="12" fill="#666">Disukai</text>
+    <text x="300" y="0" font-family="Arial" font-size="12" fill="#666">Profil</text>
+  </g>
+</svg> 

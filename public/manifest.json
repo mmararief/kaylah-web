@@ -19,5 +19,47 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Tambah Cerita Baru",
+      "short_name": "Tambah Cerita",
+      "description": "Tambahkan cerita baru dengan foto dan lokasi",
+      "url": "/#add-story",
+      "icons": [
+        {
+          "src": "icon-128x128.png",
+          "sizes": "128x128"
+        }
+      ]
+    },
+    {
+      "name": "Cerita yang Disukai",
+      "short_name": "Disukai",
+      "description": "Lihat semua cerita yang telah disukai",
+      "url": "/#liked",
+      "icons": [
+        {
+          "src": "icon-128x128.png",
+          "sizes": "128x128"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/desktop.svg",
+      "sizes": "1280x720",
+      "type": "image/svg+xml",
+      "form_factor": "wide",
+      "label": "Halaman Utama Dicoding Story di Desktop"
+    },
+    {
+      "src": "screenshots/mobile.svg",
+      "sizes": "390x844",
+      "type": "image/svg+xml",
+      "form_factor": "narrow",
+      "label": "Halaman Utama Dicoding Story di Mobile"
+    }
   ]
 }

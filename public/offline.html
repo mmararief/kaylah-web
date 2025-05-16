@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#D76C82" />
+    <title>Offline | Dicoding Story</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ebe8db;
+        color: #3d0301;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        text-align: center;
+      }
+
+      header {
+        background-color: #d76c82;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 1.8rem;
+      }
+
+      main {
+        flex: 1;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .offline-container {
+        max-width: 600px;
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .offline-icon {
+        font-size: 5rem;
+        margin-bottom: 1rem;
+        color: #b03052;
+      }
+
+      h2 {
+        margin-top: 0;
+        color: #b03052;
+      }
+
+      p {
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      button {
+        background-color: #b03052;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        padding: 10px 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #3d0301;
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Dicoding Story</h1>
+    </header>
+
+    <main>
+      <div class="offline-container">
+        <div class="offline-icon">📶</div>
+        <h2>Anda Sedang Offline</h2>
+        <p>
+          Maaf, Anda sedang dalam mode offline dan tidak dapat mengakses konten
+          ini. Silakan periksa koneksi internet Anda dan coba lagi.
+        </p>
+        <p>
+          Anda masih dapat mengakses halaman yang telah Anda kunjungi
+          sebelumnya.
+        </p>
+        <button onclick="attemptReload()">Coba Lagi</button>
+      </div>
+    </main>
+
+    <script>
+      function attemptReload() {
+        window.location.reload();
+      }
+
+      // Check online status and redirect if becomes online
+      window.addEventListener("online", () => {
+        window.location.reload();
+      });
+    </script>
+  </body>
+</html>
