@@ -167,7 +167,7 @@ export const handleAddStoryPage = () => {
         const isSubscribed = await checkSubscription();
         
         // Show local notification if not using push notifications
-        if (!isSubscribed && 'Notification' in window && Notification.permission === 'granted') {
+        if ('Notification' in window && Notification.permission === 'granted') {
           new Notification('Story berhasil dibuat', {
             body: `Anda telah membuat story baru dengan deskripsi: ${description.substring(0, 50)}${description.length > 50 ? '...' : ''}`,
             icon: 'icon-192x192.png'

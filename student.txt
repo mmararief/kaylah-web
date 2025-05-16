@@ -1,1 +1,2 @@
 API Key untuk Map Service: <API_KEY_YANG_TERSEDIA>
+APP_URL: https://lustrous-dragon-40c3a7.netlify.app/#
